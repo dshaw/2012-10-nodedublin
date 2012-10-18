@@ -95,7 +95,7 @@
             <ol>
               <li>#bigdata</li>
               <li>#chinamarket</li>
-              <li>#smallmodules</li>
+              <li>#observability</li>
             </ol>
           </h1>
 
@@ -106,7 +106,9 @@
           <h3 class="inverted">@enterprisestack</h3>
         </section>
         <section>
-          <h1 class="aka">AKA: Understanding WTF is going on with your Node app at runtime.</h1>
+          <h1 class="aka" style="margin: 40px 0;">Precondition:</h1>
+          <h2>Observability is hard</h2>
+          <h2>...especially at scale.</h2>
         </section>
       </section>
 
@@ -116,6 +118,11 @@
           <h1 class="intro">dshaw</h1>
 
           <p><img src="./assets/images/angry_unicorn.png" class="lilpad intro"></p>
+        </section>
+        <section>
+          <h1 class="intro">dshaw</h1>
+
+          <p><img src="./assets/images/dshaw_256x256.png" class="lilpad intro"></p>
         </section>
         <section>
           <h1 class="intro">Voxer</h1>
@@ -217,6 +224,10 @@
             <li>Noise reduces observability.</li>
           </ul>
         </section>
+      </section>
+
+      <!-- Observability: log aggregation -->
+      <section>
         <section>
           <h2>Log Aggregation</h2>
 
@@ -224,7 +235,7 @@
             <li>Loggly</li>
             <li>Graylog2</li>
             <li>Splunk</li>
-            <li>Winston</li>
+            <li>Winston/Winstond</li>
             <li>files + grep</li>
           </ol>
         </section>
@@ -283,17 +294,65 @@ net.createServer(function (socket) {
         <section>
           <h2>REPL: no excuses</h2>
 
-          <h3>Introducing Replify.</h3>
+          <h3>Use Replify.</h3>
 
           <pre><code contenteditable>
 npm install replify
           </code></pre>
           <pre><code contenteditable>
 var replify = require('replify')
-  , app = require('http').createServer()
+  , io = require('socket.io').listen(8888)
+  , app = io
 
-replify('realtime-9000', app)
+io.on('connection', function (socket) {
+  //...
+})
+
+replify('socket.io', app)
           </code></pre>
+        </section>
+        <section>
+          <h2>Access your replify REPL</h2>
+
+          <h3>netcat</h3>
+          <pre><code contenteditable>
+$ nc -U /tmp/repl/socket.io.sock
+          </code></pre>
+
+          <h3>socat</h3>
+          <pre><code contenteditable>
+$ socat READLINE /tmp/repl/socket.io.sock
+          </code></pre>
+        </section>
+        <section>
+          <h2>Let's make that easier too!</h2>
+
+          <h3>repl-client (rc)</h3>
+
+          <pre><code contenteditable>
+npm install -g repl-client
+          </code></pre>
+
+          <pre><code contenteditable>
+$ rc /tmp/repl/socket.io.sock
+          </code></pre>
+        </section>
+        <section>
+          <h2>repl-client (rc)</h2>
+
+          <ol class="hilist" style="width: 600px; margin-top: 40px;">
+            <li>history<sup>*</sup></li>
+            <li>tab completion</li>
+          </ol>
+
+          <p><br>(<sup>*</sup> also possible with socat)</p>
+        </section>
+        <section>
+          <h1 class="title">Demo</h1>
+
+          <h2>replify</h2>
+          <h2>repl-client (rc)</h2>
+
         </section>
       </section>
 
@@ -344,12 +403,39 @@ replify('realtime-9000', app)
 
           <p><img src="./assets/images/voxer-interns.jpg" style="width: 500px; background-color: #EEE; background: rgba(0, 0, 0, 0.1);"></p>
         </section>
+        <section>
+          <h2>@sentientwaffle</h2>
+
+          <h3><a href="https://github.com/sentientwaffle/llquantize">llquantize</a></h3>
+
+          <p><img src="./assets/images/sentientwaffle.png" style="width: 250px; background-color: #EEE; background: rgba(0, 0, 0, 0.1);"></p>
+        </section>
+        <section>
+          <h2>Metrics (can) tell a story</h2>
+
+          <ol class="hilist" style="width: 600px; margin-top: 40px;">
+            <li>Visualization</li>
+            <li>Comparative Analysis</li>
+            <li>System Health</li>
+            <li>Event Triggers</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Good Metrics</h2>
+
+          <h3>Evolve from the foundations provided by other observability measures.</h3>
+        </section>
       </section>
 
       <section>
         <h2>Dtrace</h2>
 
         <p><img class="noborder" src="./assets/images/dtrace_pony.png" style="width: 500px; background-color: #EEE; background: rgba(0, 0, 0, 0.1);"></p>
+      </section>
+
+      <section>
+        <h1 class="title">Observability</h1>
+        <h1 class="subtitle">Make computers and complex software systems more understandable by humans.</h1>
       </section>
 
       <section>
