@@ -1,0 +1,30 @@
+{
+  "name": "dshaw-talk-2012-10-nodedublin",
+  "version": "0.1.0",
+  "description": "Observability - for Node.js and Realtime Software",
+  "keywords": [
+    "node.js",
+    "nodedublin",
+    "observability",
+    "realtime",
+    "socket.io"
+  ],
+  "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dshaw/2012-10-nodedublin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dshaw/2012-10-nodedublin/issues"
+  },
+  "license": "MIT",
+  "main": "./server.js",
+  "dependencies": {
+    "express": "~2.5.9",
+    "optimist": "~0.3.4",
+    "replify": "~1.0.0"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
